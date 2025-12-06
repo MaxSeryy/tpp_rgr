@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Деталі постачальника</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Деталі постачальника</h1>
+    
+    <table>
+        <tr>
+            <th>Поле</th>
+            <th>Значення</th>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td th:text="${supplier.id}"></td>
+        </tr>
+        <tr>
+            <td>Назва</td>
+            <td th:text="${supplier.name}"></td>
+        </tr>
+        <tr>
+            <td>Контактна інформація</td>
+            <td th:text="${supplier.contactInfo}"></td>
+        </tr>
+        <tr>
+            <td>Фірма</td>
+            <td>
+                <a th:href="@{/firms/{id}(id=${supplier.firm.id})}" th:text="${supplier.firm.name}"></a>
+            </td>
+        </tr>
+    </table>
+    
+    <h2>Товари</h2>
+    <table th:if="${supplier.products != null and !supplier.products.empty}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>SKU</th>
+                <th>Ціна</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${supplier.products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.sku}"></td>
+                <td th:text="${product.price}"></td>
+                <td>
+                    <a th:href="@{/products/{id}(id=${product.id})}">Переглянути</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p th:if="${supplier.products == null or supplier.products.empty}">Товари не знайдено.</p>
+    
+    <div style="margin-top: 24px;">
+        <a th:href="@{/}">Головна</a>
+        <!-- <a th:href="@{/suppliers/{id}/edit(id=${supplier.id})}">Редагувати</a> -->
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/suppliers/{id}/edit(id=${supplier.id})}">Редагувати</a>
+        <a th:href="@{/suppliers}">Назад до списку</a>
+    </div>
+</body>
+</html>

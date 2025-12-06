@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>403 - Доступ заборонено</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>403 - Доступ заборонено</h1>
+    <p>У вас немає прав для виконання цієї дії.</p>
+    <p>Зверніться до адміністратора для отримання доступу.</p>
+    <a th:href="@{/}">На головну</a>
+    <a th:href="@{/login}">Увійти під іншим користувачем</a>
+</body>
+</html>

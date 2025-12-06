@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${supplier == null or supplier.id == null ? 'Створити постачальника' : 'Редагувати постачальника'}">Створити постачальника</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1 th:text="${supplier == null or supplier.id == null ? 'Створити постачальника' : 'Редагувати постачальника'}">Форма постачальника</h1>
+
+    <form th:action="@{${supplier.id == null ? '/suppliers' : '/suppliers/' + supplier.id}}" 
+          th:object="${supplier}" 
+          method="post">
+        
+        <div>
+            <label for="name">Назва:</label>
+            <input type="text" id="name" th:field="*{name}" required/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
+        </div>
+        
+        <div>
+            <label for="contactInfo">Контактна інформація:</label>
+            <input type="text" id="contactInfo" th:field="*{contactInfo}" required/>
+            <span th:if="${#fields.hasErrors('contactInfo')}" th:errors="*{contactInfo}" style="color:red;"></span>
+        </div>
+        
+        <div>
+            <label for="firm">Фірма:</label>
+            <select id="firm" name="firm.id" required>
+                <option value="">-- Виберіть фірму --</option>
+                <option th:each="f : ${firms}" 
+                        th:value="${f.id}" 
+                        th:text="${f.name}"
+                        th:selected="${supplier.firm != null and supplier.firm.id == f.id}"></option>
+            </select>
+            <span th:if="${#fields.hasErrors('firm')}" th:errors="*{firm}" style="color:red;"></span>
+        </div>
+
+        <button type="submit" th:text="${supplier.id == null ? 'Створити' : 'Оновити'}">Створити</button>
+        <a th:href="@{/suppliers}">Назад до списку</a>
+        <a th:href="@{/suppliers}">Скасувати</a>
+    </form>
+</body>
+</html>

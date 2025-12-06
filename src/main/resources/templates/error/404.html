@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Не знайдено</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>404 - Ресурс не знайдено</h1>
+    <p th:text="${message}">Запитуваний ресурс не існує</p>
+    <a th:href="@{/}">На головну</a>
+    <a th:href="@{/firms}">До списку фірм</a>
+</body>
+</html>

@@ -1,0 +1,250 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #ffffff;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+/* ========= Table Styles =============== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    background-color: #252525;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background-color: #2a2a2a;
+    color: #b8b8b8;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    color: #d0d0d0;
+    font-size: 20px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: #2d2d2d;
+}
+
+/* ========= Link ==============*/
+a {
+    color: #6fb76f;
+    text-decoration: none;
+    margin-right: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: #8fce8f;
+}
+
+/* ================= DELETE LINK =================*/
+a.delete-link {
+    color: #d66;
+}
+
+a.delete-link:hover {
+    color: #e88;
+}
+
+/* Delete form styled as link */
+form.delete-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    background: none;
+    max-width: none;
+    border: none;
+}
+
+form.delete-form button {
+    background: none !important;
+    border: none !important;
+    color: #d66 !important;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 0 !important;
+    margin: 0;
+    margin-right: 16px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    line-height: inherit;
+    outline: none;
+    border-radius: 0 !important;
+}
+
+form.delete-form button:hover {
+    color: #e88 !important;
+    background: none !important;
+}
+
+form.delete-form button:focus {
+    outline: none;
+}
+
+/* =========== EDIT FORM ==============*/
+form {
+    background-color: #252525;
+    padding: 32px;
+    border-radius: 8px;
+    max-width: 500px;
+    border: 1px solid #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px 0;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    font-size: 20px;
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #6fb76f;
+}
+
+label {
+    font-weight: 400;
+    font-size: 20px;
+    color: #b8b8b8;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.error {
+    color: #d66;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* ========= Submit Button ===============*/
+button[type="submit"] {
+    background: none;
+    border: none;
+    color: #6fb76f;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 0;
+    margin-right: 16px;
+    transition: all 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    color: #8fce8f;
+}
+
+/* ========= Additional spacing ===============*/
+div {
+    margin-bottom: 8px;
+}
+
+/* ========= Detail Tables ===============*/
+table tr:first-child th {
+    width: 200px;
+}
+
+table tr td:first-child {
+    font-weight: 500;
+    color: #b8b8b8;
+}
+
+/* ========= Navigation ===============*/
+nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 24px;
+}
+
+nav .user-info {
+    color: #b8b8b8;
+    font-size: 20px;
+    margin-right: 16px;
+}
+
+nav .user-info a {
+    color: #b8b8b8;
+    margin-right: 0;
+}
+
+nav .user-info a:hover {
+    color: #b8b8b8;
+}
+
+nav .user-info b {
+    color: #e0e0e0;
+}
+
+/* Logout form as link */
+form.logout-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    background: none;
+    max-width: none;
+    border: none;
+}
+
+form.logout-form button {
+    background: none;
+    border: none;
+    color: #d66;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+form.logout-form button:hover {
+    color: #e88;
+}

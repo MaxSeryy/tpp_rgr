@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${product.id == null ? 'Створити товар' : 'Редагувати товар'}">Створити товар</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1 th:text="${product.id == null ? 'Створити товар' : 'Редагувати товар'}">Форма товару</h1>
+
+    <form th:action="@{${product.id == null ? '/products' : '/products/' + product.id}}" 
+          th:object="${product}" 
+          method="post">
+        
+        <div>
+            <label for="name">Назва:</label>
+            <input type="text" id="name" th:field="*{name}" required/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
+        </div>
+        
+        <div>
+            <label for="sku">SKU:</label>
+            <input type="number" id="sku" th:field="*{sku}" required/>
+            <span th:if="${#fields.hasErrors('sku')}" th:errors="*{sku}" style="color:red;"></span>
+            <span th:if="${skuError}" th:text="${skuError}" style="color:red;"></span>
+        </div>
+        
+        <div>
+            <label for="price">Ціна:</label>
+            <input type="number" id="price" th:field="*{price}" required/>
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color:red;"></span>
+        </div>
+        
+        <div>
+            <label for="supplier">Постачальник:</label>
+            <select id="supplier" name="supplier.id" required>
+                <option value="">-- Виберіть постачальника --</option>
+                <option th:each="s : ${suppliers}" 
+                        th:value="${s.id}" 
+                        th:text="${s.name}"
+                        th:selected="${product.supplier != null and product.supplier.id == s.id}"></option>
+            </select>
+            <span th:if="${#fields.hasErrors('supplier')}" th:errors="*{supplier}" style="color:red;"></span>
+        </div>
+        
+        <button type="submit" th:text="${product.id == null ? 'Створити' : 'Оновити'}">Надіслати</button>
+        <a th:href="@{/products}">Назад до списку</a>
+        <a th:href="@{/products}">Скасувати</a>
+    </form>
+</body>
+</html>

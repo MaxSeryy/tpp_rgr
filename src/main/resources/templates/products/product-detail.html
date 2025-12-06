@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Деталі товару</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Деталі товару</h1>
+
+    <table>
+        <tr>
+            <th>Поле</th>
+            <th>Значення</th>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td th:text="${product.id}"></td>
+        </tr>
+        <tr>
+            <td>Назва</td>
+            <td th:text="${product.name}"></td>
+        </tr>
+        <tr>
+            <td>SKU</td>
+            <td th:text="${product.sku}"></td>
+        </tr>
+        <tr>
+            <td>Ціна</td>
+            <td th:text="${product.price}"></td>
+        </tr>
+        <tr>
+            <td>Постачальник</td>
+            <td>
+                <a th:href="@{/suppliers/{id}(id=${product.supplier.id})}" th:text="${product.supplier.name}"></a>
+            </td>
+        </tr>
+        <tr>
+            <td>Firm</td>
+            <td>
+                <a th:href="@{/firms/{id}(id=${product.supplier.firm.id})}" th:text="${product.supplier.firm.name}"></a>
+            </td>
+        </tr>
+    </table>
+    
+    <div style="margin-top: 24px;">
+        <a th:href="@{/}">Головна</a>
+        <!-- <a th:href="@{/products/{id}/edit(id=${product.id})}">Edit</a> -->
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/{id}/edit(id=${product.id})}">Редагувати</a>
+        <a th:href="@{/products}">Назад до списку</a>
+    </div>
+</body>
+</html>

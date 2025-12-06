@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Постачальники</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Список постачальників</h1>
+    <nav>
+        <a th:href="@{/}">Головна</a>
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/suppliers/new}">Додати постачальника</a>
+        <span sec:authorize="isAuthenticated()" class="user-info">
+            | <a href="#" style="cursor:default; color:#b8b8b8;">Користувач: <b sec:authentication="name"></b></a>
+        </span>
+        <form sec:authorize="isAuthenticated()" class="logout-form" th:action="@{/logout}" method="post">
+            <button type="submit">Вийти</button>
+        </form>
+    </nav>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ім'я</th>
+                <th>Контакти</th>
+                <th>Фірма</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="supplier : ${suppliers}">
+                <td th:text="${supplier.id}"></td>
+                <td th:text="${supplier.name}"></td>
+                <td th:text="${supplier.contactInfo}"></td>
+                <td th:text="${supplier.firm.name}"></td>
+                <td>
+                    <a th:href="@{/suppliers/{id}(id=${supplier.id})}">Переглянути</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/suppliers/{id}/edit(id=${supplier.id})}">Редагувати</a>
+                    <form sec:authorize="hasRole('ADMIN')" class="delete-form" th:action="@{/suppliers/{id}/delete(id=${supplier.id})}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Видалити цього постачальника?')">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

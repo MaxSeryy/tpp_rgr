@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>500 - Внутрішня помилка</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>500 - Внутрішня помилка сервера</h1>
+    <p th:text="${message}">Щось пішло не так на сервері</p>
+    <a th:href="@{/}">На головну</a>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Фірми</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Список фірм</h1>
+    <nav>
+        <a th:href="@{/}">Головна</a>
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/firms/new}">Додати фірму</a>
+        <span sec:authorize="isAuthenticated()" class="user-info">
+            | <a href="#" style="cursor:default; color:#b8b8b8;">Користувач: <b sec:authentication="name"></b></a>
+        </span>
+        <form sec:authorize="isAuthenticated()" class="logout-form" th:action="@{/logout}" method="post">
+            <button type="submit">Вийти</button>
+        </form>
+    </nav>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Адреса</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="firm : ${firms}">
+                <td th:text="${firm.id}"></td>
+                <td th:text="${firm.name}"></td>
+                <td th:text="${firm.address}"></td>
+                <td>
+                    <a th:href="@{/firms/{id}(id=${firm.id})}">Переглянути</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/firms/{id}/edit(id=${firm.id})}">Редагувати</a>
+                    <form sec:authorize="hasRole('ADMIN')" class="delete-form" th:action="@{/firms/{id}/delete(id=${firm.id})}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Видалити цю фірму?')">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

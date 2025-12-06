@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Firm Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Firm Details</h1>
+    
+    <table>
+        <tr>
+            <th>Поле</th>
+            <th>Значення</th>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td th:text="${firm.id}"></td>
+        </tr>
+        <tr>
+            <td>Назва</td>
+            <td th:text="${firm.name}"></td>
+        </tr>
+        <tr>
+            <td>Адреса</td>
+            <td th:text="${firm.address}"></td>
+        </tr>
+    </table>
+
+    <h2>Постачальники</h2>
+    <table th:if="${firm.suppliers != null and !firm.suppliers.empty}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Контактна інформація</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="supplier : ${firm.suppliers}">
+                <td th:text="${supplier.id}"></td>
+                <td th:text="${supplier.name}"></td>
+                <td th:text="${supplier.contactInfo}"></td>
+                <td>
+                    <a th:href="@{/suppliers/{id}(id=${supplier.id})}">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p th:if="${firm.suppliers == null or firm.suppliers.empty}">No suppliers found.</p>
+    
+    <div style="margin-top: 24px;">
+        <a th:href="@{/}">На головну</a>
+        <!-- <a th:href="@{/firms/{id}/edit(id=${firm.id})}">Edit</a> -->
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/firms/{id}/edit(id=${firm.id})}">Редагувати</a>
+        <a th:href="@{/firms}">Назад до списку</a>
+    </div>
+</body>
+</html>

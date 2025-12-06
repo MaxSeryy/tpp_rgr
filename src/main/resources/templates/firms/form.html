@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${firm.id == null ? 'Створення фірми' : 'Редагування фірми'}">Створення фірми</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1 th:text="${firm.id == null ? 'Створення фірми' : 'Редагування фірми'}">Створити фірму</h1>
+
+    <form th:action="@{${firm.id == null ? '/firms' : '/firms/' + firm.id}}" 
+          th:object="${firm}" 
+          method="post">
+        
+        <div>
+            <label for="name">Назва:</label>
+            <input type="text" id="name" th:field="*{name}" required/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
+        </div>
+        
+        <div>
+            <label for="address">Адреса:</label>
+            <input type="text" id="address" th:field="*{address}" required/>
+            <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color:red;"></span>
+        </div>
+
+        <button type="submit" th:text="${firm.id == null ? 'Створити' : 'Оновити'}">Відправити</button>
+        <a th:href="@{/firms}">Назад до списку</a>
+        <a th:href="@{/firms}">Скасувати</a>
+    </form>
+</body>
+</html>
