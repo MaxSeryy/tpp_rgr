@@ -27,11 +27,11 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public Supplier update(Long id, Supplier supplier) {
         Supplier existing = getById(id);
-        // Оновлюємо тільки поля, зберігаючи зв'язки
+
         existing.setName(supplier.getName());
         existing.setContactInfo(supplier.getContactInfo());
         existing.setFirm(supplier.getFirm());
-        // Не чіпаємо products - вони залишаються як є
+
         return supplierRepository.save(existing);
     }
 

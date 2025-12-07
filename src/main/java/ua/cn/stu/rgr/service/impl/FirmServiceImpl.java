@@ -30,10 +30,8 @@ public class FirmServiceImpl implements FirmService {
     @Override
     public Firm update(Long id, Firm firm) {
         Firm existing = getById(id);
-        // Оновлюємо тільки поля, зберігаючи зв'язки
         existing.setName(firm.getName());
         existing.setAddress(firm.getAddress());
-        // Не чіпаємо suppliers - вони залишаються як є
         return firmRepository.save(existing);
     }
 

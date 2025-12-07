@@ -29,9 +29,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product update(Long id, Product product) {
         Product existing = getById(id);
-        // Перевіряємо унікальність SKU (виключаючи поточний продукт)
+
         checkSkuUnique(product.getSku(), id);
-        // Оновлюємо тільки поля
+
         existing.setName(product.getName());
         existing.setSku(product.getSku());
         existing.setPrice(product.getPrice());

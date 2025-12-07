@@ -29,16 +29,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                // Public access - login and error pages
                 .requestMatchers("/login", "/css/**", "/js/**", "/error/**").permitAll()
                 
-                // ADMIN only - create, update, delete operations
                 .requestMatchers(HttpMethod.POST, "/firms/**", "/suppliers/**", "/products/**").hasRole("ADMIN")
                 .requestMatchers("/firms/new", "/firms/*/edit", "/firms/*/delete").hasRole("ADMIN")
                 .requestMatchers("/suppliers/new", "/suppliers/*/edit", "/suppliers/*/delete").hasRole("ADMIN")
                 .requestMatchers("/products/new", "/products/*/edit", "/products/*/delete").hasRole("ADMIN")
                 
-                // Authenticated users - read access
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
